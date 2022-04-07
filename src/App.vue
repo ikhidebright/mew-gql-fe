@@ -44,7 +44,12 @@ const { loading, result, error, refetch } = useQuery(
     fetchPolicy: "cache-and-network",
   }
 );
+
+const convertTempToCel = (temp) => {
+  return Math.floor(temp - 273.15);
+};
+
 const temp = useResult(result, null, (data) => {
-  return Math.floor(data.getCurrentWeatherByCityName - 273.15);
+  return convertTempToCel(data.getCurrentWeatherByCityName);
 });
 </script>
